@@ -74,7 +74,7 @@ func TestPush(t *testing.T) {
 		s := loadToStack(c.size, c.stack)
 		err := s.Push(c.push)
 		if err != c.err {
-			t.Fatalf("err = \"%s\", want err = \"%s\"", err, c.err)
+			t.Fatalf(`err = "%s", want err = "%s"`, err, c.err)
 		}
 		p, _ := s.Peek()
 		if p != c.want {
