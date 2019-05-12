@@ -18,7 +18,7 @@ func TestNewStack(t *testing.T) {
 	for _, c := range cases {
 		s := NewStack(c.size)
 		if s.data == nil {
-			t.Errorf("s.data is nil, want not nil")
+			t.Fatal("s.data is nil, want not nil")
 		}
 
 		if len(s.data) != int(c.size) {
