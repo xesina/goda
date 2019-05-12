@@ -43,13 +43,13 @@ func TestEnqueue(t *testing.T) {
 			items:   []int{},
 			enqueue: 4,
 			tail:    0,
-			err:     errQueueEmpty,
+			err:     errQueueFull,
 		},
 		{
 			size:    3,
 			items:   []int{1, 2, 3},
 			enqueue: 4,
-			tail:    0,
+			tail:    3,
 			err:     errQueueFull,
 		},
 	}
@@ -136,6 +136,12 @@ func TestDequeue(t *testing.T) {
 			want:  1,
 			err:   nil,
 		},
+		{
+			size:  5,
+			items: []int{5, 4, 3, 2, 1},
+			want:  5,
+			err:   nil,
+		},
 	}
 
 	for _, c := range cases {
@@ -147,7 +153,7 @@ func TestDequeue(t *testing.T) {
 		}
 
 		if d != c.want {
-			t.Fatalf("tail = %d, want tail = %d", d, c.want)
+			t.Fatalf("dequeued = %d, want dequeued = %d", d, c.want)
 		}
 	}
 }
@@ -214,6 +220,30 @@ func TestIsFull(t *testing.T) {
 
 		if full != c.want {
 			t.Fatalf("full = %v, want full = %v", full, c.want)
+		}
+	}
+}
+
+func TestSequenceOrder(t *testing.T) {
+	cases := []struct {
+		size    uint  // size indicates the queue size
+		enqueue []int // enqueued items
+		dequeue []int // dequeued items
+	}{
+		{
+			size:    5,
+			enqueue: []int{1, 2, 3},
+			dequeue: []int{1, 2, 3},
+		},
+	}
+
+	for _, c := range cases {
+		q := loadToQueue(c.size, c.enqueue)
+		for _, v := range c.enqueue {
+			tmp, _ := q.Dequeue()
+			if tmp != v {
+				t.Fatalf("got %d, want %d", tmp, v)
+			}
 		}
 	}
 }
