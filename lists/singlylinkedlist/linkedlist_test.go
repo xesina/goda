@@ -106,6 +106,56 @@ func TestReverse(t *testing.T) {
 	}
 }
 
+func TestResursiveReverse(t *testing.T) {
+	cases := []struct {
+		items []int
+	}{
+		{
+			items: []int{1, 2, 3, 4, 5, 6},
+		},
+	}
+
+	for _, c := range cases {
+		l, _ := loadToList(c.items)
+		l.ResursiveReverse(l.head)
+		l.Print()
+	}
+}
+
+func TestPrintRecursively(t *testing.T) {
+	cases := []struct {
+		items []int
+	}{
+		{
+			items: []int{1, 2, 3, 4},
+		},
+		{
+			items: []int{1},
+		},
+		{},
+	}
+
+	for _, c := range cases {
+		l, _ := loadToList(c.items)
+		PrintRecursively(l.head)
+	}
+}
+
+func TestPrintReverse(t *testing.T) {
+	cases := []struct {
+		items []int
+	}{
+		{
+			items: []int{1, 2, 3, 4},
+		},
+	}
+
+	for _, c := range cases {
+		l, _ := loadToList(c.items)
+		PrintReverse(l.head)
+	}
+}
+
 func loadToList(items []int) (*List, *Node) {
 	if len(items) == 0 {
 		l := New()

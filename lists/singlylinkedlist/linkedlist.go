@@ -70,3 +70,24 @@ func (l *List) Print() {
 
 	return
 }
+
+// PrintRecursively will print the data item of all linked list nodes in a recursive fashion
+func PrintRecursively(head *Node) {
+	if head == nil {
+		fmt.Println()
+		return
+	}
+
+	fmt.Printf("%d ", head.data)
+	PrintRecursively(head.next)
+}
+
+// PrintReverse will print linked list nodes in reverse order
+func PrintReverse(head *Node) {
+	if head == nil {
+		return
+	}
+
+	PrintReverse(head.next)
+	fmt.Printf("%d ", head.data)
+}

@@ -21,3 +21,17 @@ func (l *List) Reverse() {
 	l.head = prev
 
 }
+
+// ResursiveReverse will reverse the linked list nodes in a recursive fashion
+func (l *List) ResursiveReverse(n *Node) {
+	if n.next == nil {
+		l.head = n
+		return
+	}
+
+	l.ResursiveReverse(n.next)
+
+	next := n.next
+	next.next = n
+	n.next = nil
+}
