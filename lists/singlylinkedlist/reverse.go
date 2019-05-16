@@ -35,3 +35,15 @@ func (l *List) ResursiveReverse(n *Node) {
 	next.next = n
 	n.next = nil
 }
+
+// Reverse reverses a linked list nodes
+func Reverse(head *Node) *Node {
+	if head == nil || head.next == nil {
+		return head
+	}
+
+	p := Reverse(head.next)
+	head.next.next = head
+	head.next = nil
+	return p
+}
