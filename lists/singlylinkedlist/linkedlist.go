@@ -57,6 +57,9 @@ func (l *List) Head() *Node {
 // Print will print the data item of all linked list nodes
 func (l *List) Print() {
 	node := l.head
+	if node == nil {
+		fmt.Fprint(l.output, "linked list is empty.")
+	}
 
 	for node != nil {
 		fmt.Fprintf(l.output, "%d ", node.data)

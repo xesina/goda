@@ -77,6 +77,35 @@ func TestHead(t *testing.T) {
 	}
 }
 
+func TestReverse(t *testing.T) {
+	cases := []struct {
+		items []int
+	}{
+		{
+			items: []int{1, 2, 3},
+		},
+		{
+			items: []int{1, 2, 3, 4, 5, 6},
+		},
+		{
+			items: []int{1},
+		},
+		{
+			items: []int{},
+		},
+	}
+
+	for _, c := range cases {
+		l, last := loadToList(c.items)
+		l.Reverse()
+		if l.head != last {
+			t.Fatalf("l.head = %d should point to last = %d after reverse", l.head, last)
+		}
+		// TODO: add complete chain test to make sure reverse works as expected
+		l.Print()
+	}
+}
+
 func loadToList(items []int) (*List, *Node) {
 	if len(items) == 0 {
 		l := New()
