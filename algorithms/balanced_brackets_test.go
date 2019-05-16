@@ -1,5 +1,6 @@
 package algorithms
 
+// Problem from leetcode: https://leetcode.com/problems/valid-parentheses/
 // Checking for balanced brackets using stack data structure
 // TODO: refactor this function with stack already written in stack package
 
