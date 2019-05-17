@@ -1,4 +1,4 @@
-package main
+package stack
 
 import (
 	"errors"
@@ -72,8 +72,4 @@ func (s *Stack) IsEmpty() bool {
 // IsFull returns true if stack is full
 func (s *Stack) IsFull() bool {
 	return s.top == s.Size()-1
-}
-
-func main() {
-
 }
