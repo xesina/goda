@@ -29,37 +29,24 @@ func (s *stack) pop() (*Node, error) {
 	return p, nil
 }
 
-// IterativeInorderTraversal traverses the binary tree in inorder fashion and iteratively!
-func IterativeInorderTraversal(root *Node) []int {
+func (s *stack) isEmpty() bool {
+	return s.top == -1
+}
+
+func inorderTraversal(root *Node) []int {
 	var nodes []int
-	m := make(map[*Node]bool)
 
 	s := newStack()
 	node := root
-	for node != nil {
-
-		// first visit the left subtree if it exists and not visited before
-		if node.left != nil && m[node.left] != true {
+	for node != nil || !s.isEmpty() {
+		for node != nil {
 			s.push(node)
 			node = node.left
-			continue
-		}
-
-		// if we visted the left subtree or it doesn't exists then we add current node and
-		// mark it as visited
-		if m[node] != true {
-			nodes = append(nodes, node.data)
-			m[node] = true
-		}
-
-		// first visit the right subtree if it exists and not visited before
-		if node.right != nil && m[node.right] != true {
-			s.push(node)
-			node = node.right
-			continue
 		}
 
 		node, _ = s.pop()
+		nodes = append(nodes, node.data)
+		node = node.right
 
 	}
 
