@@ -110,3 +110,100 @@ func GetInorderTraversal(root *Node) []int {
 
 	return nodes
 }
+
+// GetLevelOrderTraversal ...
+func GetLevelOrderTraversal(root *Node) (nodes []int) {
+	q := newQueue()
+	q.enqueue(root)
+	for !q.isEmpty() {
+		node := q.dequeue()
+		nodes = append(nodes, node.data)
+		if node.left != nil {
+
+			q.enqueue(node.left)
+		}
+		if node.right != nil {
+
+			q.enqueue(node.right)
+		}
+	}
+
+	return
+}
+
+// Max will find max item in binary tree
+func Max(root *Node) int {
+	node := root
+	var max int
+
+	for node != nil {
+		max = node.data
+		node = node.right
+	}
+
+	return max
+}
+
+// RecursiveMax will return max item in binary tree in a recursive fashion
+func RecursiveMax(root *Node) int {
+	if root == nil {
+		return 0
+	}
+
+	max := root.data
+	if root.right != nil {
+		max = RecursiveMax(root.right)
+	}
+
+	return max
+}
+
+// Min Return min item in a binary tree
+func Min(root *Node) int {
+	node := root
+	var min int
+
+	for node != nil {
+		min = node.data
+		node = node.left
+	}
+
+	return min
+}
+
+// RecursiveMin ...
+func RecursiveMin(root *Node) int {
+	var min int
+	if root == nil {
+		return min
+	}
+
+	min = root.data
+
+	if root.left != nil {
+		min = RecursiveMin(root.left)
+	}
+
+	return min
+
+}
+
+// Height will return height of a binary tree
+func Height(root *Node) int {
+	var leftHeight, rightHeight int
+	if root == nil {
+		return -1
+	}
+	leftHeight = Height(root.left)
+	rightHeight = Height(root.right)
+
+	return max(leftHeight, rightHeight) + 1
+
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}

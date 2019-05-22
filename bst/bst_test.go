@@ -62,6 +62,67 @@ func TestIterativeInorderTraversal(t *testing.T) {
 	}
 }
 
+func TestLevelOrderTraversal(t *testing.T) {
+	testCase := []int{13, 12, 23, 10, 20, 24}
+	root := testBST()
+	nodes := GetLevelOrderTraversal(root)
+	for k, v := range testCase {
+		if nodes[k] != v {
+			t.Fatalf("got %d, want %d", nodes[k], v)
+		}
+	}
+}
+
+func TestMax(t *testing.T) {
+	want := 24
+	root := testBST()
+	max := Max(root)
+	if max != want {
+		t.Fatalf("got max = %d, want max = %d", max, want)
+	}
+}
+
+func TestRecursiveMax(t *testing.T) {
+	root := testBST()
+	root.Insert(67)
+	want := 67
+	max := RecursiveMax(root)
+	if max != want {
+		t.Fatalf("got max = %d, want max = %d", max, want)
+	}
+}
+
+func TestMin(t *testing.T) {
+	root := testBST()
+	want := 2
+	root.Insert(want)
+	min := Min(root)
+
+	if min != want {
+		t.Fatalf("got min = %d, want min = %d", min, want)
+	}
+}
+
+func TestRecursiveMin(t *testing.T) {
+	root := testBST()
+	want := 2
+	root.Insert(want)
+	min := RecursiveMin(root)
+	if min != want {
+		t.Fatalf("got min = %d want min = %d,", min, want)
+	}
+}
+
+func TestHeight(t *testing.T) {
+	root := testBST()
+	want := 2
+	h := Height(root)
+
+	if h != want {
+		t.Fatalf("got height = %d, want height = %d", h, want)
+	}
+}
+
 //           13
 //	        /  \
 //        12    23

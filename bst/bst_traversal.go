@@ -2,6 +2,29 @@ package bst
 
 import "errors"
 
+type queue struct {
+	data []*Node
+}
+
+// NewQueue returns a simple queue
+func newQueue() *queue {
+	return &queue{}
+}
+
+func (q *queue) enqueue(node *Node) {
+	q.data = append(q.data, node)
+}
+
+func (q *queue) dequeue() *Node {
+	item := q.data[0]
+	q.data = q.data[1:]
+	return item
+}
+
+func (q *queue) isEmpty() bool {
+	return len(q.data) == 0
+}
+
 type stack struct {
 	data []*Node
 	top  int
